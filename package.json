@@ -1,7 +1,7 @@
 {
   "name": "scarlet-winston",
   "description": "A Winston Logger Using Method And Property Event Intercetion",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Tim Chaplin <tim.chaplin@ticktockdevelopment.com>",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "browserDependencies": {},
   "dependencies": {
-    "winston" : "~0.7.2",
+    "winston": "~0.7.2",
     "scarlet": "~0.5.3"
   },
   "keywords": [
