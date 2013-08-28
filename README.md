@@ -121,6 +121,32 @@ functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
+### Start logging an instances member
+
+```javascript
+var scarletWinston = require('scarlet-winston');
+
+//Define a function to log
+function FunctionToLog(){
+  this.logMe = function(){ scarletWinston.info("In logMe"); }
+  this.dontLogMe = function(){ scarletWinston.info("In Don't logMe"); }
+};
+var functionToLogInstance = new FunctionToLog();
+
+//Attach Logger to object
+scarletWinston.bindTo(functionToLogInstance,'logMe');
+
+//Call a non intercepted method
+functionToLogInstance.dontLogMe();
+//-> no output
+
+//Now use intercepted object with logging!
+functionToLogInstance.logMe();
+//->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
+//->info: In logMe
+//->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
+```
+
 ###Start logging all instances of a function
 
  ```javascript
