@@ -19,7 +19,7 @@
   "browserDependencies": {},
   "dependencies": {
     "winston": "~0.7.2",
-    "scarlet": "~0.5.3"
+    "scarlet": "~0.5.5"
   },
   "keywords": [
     "winston",
