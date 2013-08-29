@@ -53,9 +53,21 @@ scarletWinston.winston
 
 For more information on how to configure winston please go [here](https://github.com/flatiron/winston).
 
+## Do I need Scarlet?
+
+Scarlet-Winston extends all the scarlet methods.  This allows you to use all the scarlet methods using scarlet-winston.  See the [Scarlet documentation](https://github.com/scarletjs/scarlet)  for more details.
+
+Here is an example of how you can create a scarlet interceptor and utilize the scarletWinston logging
+```javascript
+scarletWinston.intercept(Math,'min')
+              .on('before', function(invocation){
+                  scarletWinston.log('info',"Before calling "+invocation.objectName);
+              })
+```
+
 ## Custom messages during the before and after events.
 
-If you want to custom the before and after event logs do the following:
+If you want to customize the before and after event logs do the following:
 
 ```javascript
 scarletWinston.beforeMethodCall = function(invocation){
