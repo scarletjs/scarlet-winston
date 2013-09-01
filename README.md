@@ -13,23 +13,16 @@ scarlet-winston
 
 ```javascript
 var Scarlet = require('scarlet');
-var scarlet = new Scarlet('scarlet-winston');
+var scarlet = new Scarlet('../lib/scarlet-winston');
 var scarletWinston = scarlet.plugins.winston;
 
-//Define a function to log
-function FunctionToLog(){
-  this.logMe = function(){ console.log("In logMe"); }
-};
-var functionToLogInstance = new FunctionToLog();
-
 //Attach Logger to object
-scarletWinston.bindTo(functionToLogInstance);
+scarletWinston.bindTo(Math,'min');
 
 //Now use intercepted object with logging!
-functionToLogInstance.logMe();
-//->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
-//->In logMe
-//->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
+Math.min(1,2,3);
+//->info: [Mon Sep 02 2013 00:49:58 GMT+0100 (BST)] calling - Object::min(1,2,3)
+//->info: [Mon Sep 02 2013 00:49:58 GMT+0100 (BST)] Object::min(1,2,3) - returned:1 - execution time(0:0:0.0)
 ```
 
 ## Getting Started
