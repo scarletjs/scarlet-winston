@@ -1,7 +1,7 @@
 scarlet-winston
 ===============
 
-A Winston Logger Using Method And Property Event Intercetion
+> Scarlet plugin for using Winston with method and property event interception
 
 
 [![Build Status](https://travis-ci.org/scarletjs/scarlet-winston.png?branch=master)](https://travis-ci.org/scarletjs/scarlet-winston)
@@ -31,11 +31,37 @@ functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
+## Getting Started
+This plugin requires Scarlet `~0.5.x`
+
+If you haven't used [Scarlet](https://github.com/scarletjs/scarlet) before, be sure to check out the [Documentation](https://github.com/scarletjs/scarlet).  To use this plugin perform the following:
+
+Install scarlet
+```shell
+npm install scarlet --save
+```
+
+Install plugin
+```shell
+npm install scarlet-winston --save
+```
+
+Once the plugin has been installed, you can use it in your application as follows:
+
+```js
+//load scarlet
+var Scarlet = require('scarlet');
+
+//Initialize scarlet with the plugin
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
+```
+
 ## Motvation
 
 Scarlet-Winston was created to allow applications to get the benefits of event based interception using [scarlet](https://github.com/scarletjs/scarlet) and robust full featured logging using [winston](https://github.com/flatiron/winston).
 
-The project uses Scarlets event based interception, this allows the interception to be asynchronous and not to effect the application.  Scarlet emits an event *before* a method is called and *after* a method is called.  Scarlet-Winston listens for these events and uses winston to log the events.
+Scarlets event based interception is asynchronous and gets events on methods/properties before, after, and on error. Scarlet-Winston listens for these events and logs them.
 
 ## How do I Configure Winston?
 
@@ -52,18 +78,6 @@ scarletWinston.winston
 ```
 
 For more information on how to configure winston please go [here](https://github.com/flatiron/winston).
-
-## Do I need Scarlet?
-
-Scarlet-Winston extends all the scarlet methods.  This allows you to use all the scarlet methods using scarlet-winston.  See the [Scarlet documentation](https://github.com/scarletjs/scarlet)  for more details.
-
-Here is an example of how you can create a scarlet interceptor and utilize the scarletWinston logging
-```javascript
-scarletWinston.intercept(Math,'min')
-              .on('before', function(invocation){
-                  scarletWinston.log('info',"Before calling "+invocation.objectName);
-              })
-```
 
 ## Custom messages during the before and after events.
 
@@ -85,7 +99,9 @@ scarletWinston.afterMethodCall = function(invocation){
 ### Start logging for an instance
 
 ```javascript
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
@@ -106,8 +122,9 @@ functionToLogInstance.logMe();
 ### Start logging for an instance with custom winston configuration
 
 ```javascript
-var winston = require('winston');
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
@@ -136,7 +153,9 @@ functionToLogInstance.logMe();
 ### Start logging an instances member
 
 ```javascript
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
@@ -162,7 +181,9 @@ functionToLogInstance.logMe();
 ###Start logging all instances of a function
 
  ```javascript
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
 
 function FunctionToLog(){
   this.logMe = function(){ scarletWinston.info("In logMe"); }
@@ -187,7 +208,9 @@ functionToLogInstance.logMe();
 ###Start logging all instances of a prototype function
 
  ```javascript
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
  
 //Define a prototype object to log
 var ObjectToLog = function (){};

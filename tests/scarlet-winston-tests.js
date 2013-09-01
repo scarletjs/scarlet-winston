@@ -1,6 +1,8 @@
 var should = require('should');
-var winston = require('winston');
-var ScarletWinston = require("../lib/scarlet-winston");
+var Scarlet = require('scarlet');
+
+var scarlet = new Scarlet("../lib/scarlet-winston");
+var scarletWinston = scarlet.plugins.winston;
 
 var ObjectLiteral = require("./dummies/object-literal");
 var NamedFunction = require("./dummies/named-function");
@@ -21,12 +23,12 @@ describe('Given using a Scarlet Winston Logger',function(){
 	beforeEach(function() {
 		didAppend = false;
 		appendMessage = "";
+		var mockWinston = new MockWinston();
+		scarletWinston.logger(mockWinston);
 	});
 
 	describe('When logging a Prototype function',function(){
-		var scarletWinston = new ScarletWinston();
-		var mockWinston = new MockWinston();
-		var LogPrototypeFunction = scarletWinston.logger(mockWinston).bindTo(PrototypeFunction);
+		var LogPrototypeFunction = scarletWinston.bindTo(PrototypeFunction);
 
 		it("should return method results without modification",function(){
 						
@@ -44,10 +46,8 @@ describe('Given using a Scarlet Winston Logger',function(){
 	describe('When logging a object literal',function(){
 
 		var LogObjectLiteral = Object.create(ObjectLiteral);
-
-		var scarletWinston = new ScarletWinston();
-		var mockWinston = new MockWinston();		
-		var LogPrototypeFunction = scarletWinston.logger(mockWinston).bindTo(LogObjectLiteral);
+	
+		var LogPrototypeFunction = scarletWinston.bindTo(LogObjectLiteral);
 
 		it("should return method results without modification",function(){
 						
@@ -62,9 +62,8 @@ describe('Given using a Scarlet Winston Logger',function(){
 	});
 
 	describe('When logging a named function',function(){
-		var scarletWinston = new ScarletWinston();
-		var mockWinston = new MockWinston();		
-		var LogNamedFunction = scarletWinston.logger(mockWinston).bindTo(NamedFunction);
+
+		var LogNamedFunction = scarletWinston.bindTo(NamedFunction);
 
 		it("should return method results without modification",function(){
 			var loggedInstance = new LogNamedFunction();
@@ -80,10 +79,8 @@ describe('Given using a Scarlet Winston Logger',function(){
 	});
 
 	describe('When logging a named function',function(){
-		var scarletWinston = new ScarletWinston();
-		var mockWinston = new MockWinston();
-		var LogUnnamedFunction = scarletWinston.logger(mockWinston)
-												.bindTo(UnnamedFunction);
+
+		var LogUnnamedFunction = scarletWinston.bindTo(UnnamedFunction);
 
 		it("should return method results without modification",function(){
 			var loggedInstance = new LogUnnamedFunction();

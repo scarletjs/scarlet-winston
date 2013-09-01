@@ -1,6 +1,6 @@
 {
   "name": "scarlet-winston",
-  "description": "A Winston Logger Using Method And Property Event Intercetion",
+  "description": "Scarlet plugin for using Winston with method and property event interception",
   "version": "0.0.5",
   "author": "Tim Chaplin <tim.chaplin@ticktockdevelopment.com>",
   "repository": {
@@ -8,18 +8,21 @@
     "url": "https://github.com/scarletjs/scarlet-winston.git"
   },
   "homepage": "https://github.com/scarletjs/scarlet-winston.git",
+  "browserDependencies": {},
+  "dependencies": {
+    "winston": "~0.7.2"
+  },
+  "peerDependencies": {
+    "scarlet": "~0.5.11"
+  },
   "devDependencies": {
     "mocha": "*",
     "should": "*",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-contrib-watch": "~0.4.0",
-    "grunt-release": "~0.3.3"
-  },
-  "browserDependencies": {},
-  "dependencies": {
-    "winston": "~0.7.2",
-    "scarlet": "~0.5.5"
+    "grunt-release": "~0.3.3",
+    "scarlet": "~0.5.11"
   },
   "keywords": [
     "winston",
