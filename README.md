@@ -3,7 +3,6 @@ scarlet-winston
 
 > Scarlet plugin for using Winston with method and property event interception
 
-
 [![Build Status](https://travis-ci.org/scarletjs/scarlet-winston.png?branch=master)](https://travis-ci.org/scarletjs/scarlet-winston)
 
 ##Install
@@ -13,11 +12,13 @@ scarlet-winston
 ##Start logging
 
 ```javascript
-var scarletWinston = require('scarlet-winston');
+var Scarlet = require('scarlet');
+var scarlet = new Scarlet('scarlet-winston');
+var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
-  this.logMe = function(){ scarletWinston.info("In logMe"); }
+  this.logMe = function(){ console.log("In logMe"); }
 };
 var functionToLogInstance = new FunctionToLog();
 
@@ -27,7 +28,7 @@ scarletWinston.bindTo(functionToLogInstance);
 //Now use intercepted object with logging!
 functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
@@ -105,7 +106,7 @@ var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
-  this.logMe = function(){ scarletWinston.info("In logMe"); }
+  this.logMe = function(){ console.log("In logMe"); }
 };
 var functionToLogInstance = new FunctionToLog();
 
@@ -115,7 +116,7 @@ scarletWinston.bindTo(functionToLogInstance);
 //Now use intercepted object with logging!
 functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
@@ -128,7 +129,7 @@ var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
-  this.logMe = function(){ scarletWinston.info("In logMe"); }
+  this.logMe = function(){ console.log("In logMe"); }
 };
 var functionToLogInstance = new FunctionToLog();
 
@@ -146,7 +147,7 @@ scarletWinston.logger(logger).bindTo(functionToLogInstance);
 //Now use intercepted object with logging!
 functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
@@ -159,8 +160,8 @@ var scarletWinston = scarlet.plugins.winston;
 
 //Define a function to log
 function FunctionToLog(){
-  this.logMe = function(){ scarletWinston.info("In logMe"); }
-  this.dontLogMe = function(){ scarletWinston.info("In Don't logMe"); }
+  this.logMe = function(){ console.log("In logMe"); }
+  this.dontLogMe = function(){ console.log("In Don't logMe"); }
 };
 var functionToLogInstance = new FunctionToLog();
 
@@ -174,7 +175,7 @@ functionToLogInstance.dontLogMe();
 //Now use intercepted object with logging!
 functionToLogInstance.logMe();
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->info: [Tue Aug 27 2013 23:51:16 GMT+0100 (BST)]FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.1)
 ```
 
@@ -186,7 +187,7 @@ var scarlet = new Scarlet('scarlet-winston');
 var scarletWinston = scarlet.plugins.winston;
 
 function FunctionToLog(){
-  this.logMe = function(){ scarletWinston.info("In logMe"); }
+  this.logMe = function(){ console.log("In logMe"); }
 };
 
 //Attach Logger to object
@@ -201,7 +202,7 @@ var functionToLogInstance = new FunctionToLog();
 functionToLogInstance.logMe();
 //-> Outputs the following to the console:
 //->[Tue Aug 27 2013 09:39:55 GMT+0100 (BST)] - Debug - calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->[Tue Aug 27 2013 09:39:55 GMT+0100 (BST)] - Debug - FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.0)
 ```
 
@@ -214,7 +215,7 @@ var scarletWinston = scarlet.plugins.winston;
  
 //Define a prototype object to log
 var ObjectToLog = function (){};
-ObjectToLog.prototype.someMethod = function(){ scarletWinston.info("In logMe"); };
+ObjectToLog.prototype.someMethod = function(){ console.log("In logMe"); };
   
 //Attach Logger to object
 ObjectToLog = scarletWinston.bindTo(ObjectToLog);
@@ -229,6 +230,6 @@ var objectToLog = new ObjectToLog();
 var result = objectToLog.someMethod();
 //-> Outputs the following to the console:
 //->[Tue Aug 27 2013 09:50:23 GMT+0100 (BST)] - Debug - calling - FunctionToLog::logMe()
-//->info: In logMe
+//->In logMe
 //->[Tue Aug 27 2013 09:50:23 GMT+0100 (BST)] - Debug - FunctionToLog::logMe() - returned:undefined - execution time(0:0:0.0)
 ```
