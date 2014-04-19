@@ -10,19 +10,21 @@
   "homepage": "https://github.com/scarletjs/scarlet-winston.git",
   "browserDependencies": {},
   "dependencies": {
-    "winston": "~0.7.2"
+    "winston": "~0.7.3"
   },
   "peerDependencies": {
-    "scarlet": "~0.5.11"
+    "scarlet": "~2.0.20"
   },
   "devDependencies": {
     "mocha": "*",
     "should": "*",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.4.0",
-    "grunt-release": "~0.3.3",
-    "scarlet": "~0.5.11"
+    "scarlet": "~2.0.20",
+    "gulp": "~3.6.1",
+    "gulp-bump": "~0.1.7",
+    "gulp-git": "~0.3.6",
+    "gulp-util": "~2.2.14",
+    "gulp-mocha": "~0.4.1",
+    "gulp-jshint": "~1.5.3"
   },
   "keywords": [
     "winston",
@@ -42,7 +44,7 @@
     "console"
   ],
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "main": "./index.js",
   "directories": {
@@ -50,7 +52,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha --reporter spec tests/*"
+    "test": "mocha --reporter spec"
   },
   "license": "MIT"
 }
